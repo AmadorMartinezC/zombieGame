@@ -17,6 +17,7 @@ public class Zombie extends Game {
         batch = new SpriteBatch();
 
         font = new BitmapFont();
+        this.setScreen(new gameMenu(this));
 
     }
 }
