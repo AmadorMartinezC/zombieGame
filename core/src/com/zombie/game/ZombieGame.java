@@ -5,6 +5,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -95,10 +96,12 @@ public class ZombieGame extends ApplicationAdapter implements Screen {
 		game.sBatch.draw(new Texture(Gdx.files.internal("background.jpg")), 0, 0);
 
 		// Screen text
-		game.bMapFont.draw(game.sBatch, zombie.x+"", Zombie.WIDTH / 2 - 60, Zombie.HEIGHT - 60);
+		game.bMapFont.setColor(Color.BLACK);
+		game.bMapFont.draw(game.sBatch, "Posicion X: "+zombie.x, Zombie.WIDTH - 140, Zombie.HEIGHT - 10);
+		game.bMapFont.draw(game.sBatch, "Posicion Y: "+zombie.y, Zombie.WIDTH - 140, Zombie.HEIGHT - 30);
 
 		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-			if (zombie.x < 0){
+			if (zombie.x <= 0){
 				game.sBatch.draw(walkLeft.getKeyFrame(stateTime, true), zombie.x, zombie.y);
 				zombie.x -= 0 * Gdx.graphics.getDeltaTime();
 			} else {
@@ -107,7 +110,7 @@ public class ZombieGame extends ApplicationAdapter implements Screen {
 			}
 		}
 		else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-			if (zombie.x > Zombie.WIDTH - zombie.width){
+			if (zombie.x >= Zombie.WIDTH - zombie.width){
 				game.sBatch.draw(walkRight.getKeyFrame(stateTime, true), zombie.x, zombie.y);
 				zombie.x += 0 * Gdx.graphics.getDeltaTime();
 			} else {
@@ -116,7 +119,7 @@ public class ZombieGame extends ApplicationAdapter implements Screen {
 			}
 		}
 		else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-			if(zombie.y > Zombie.HEIGHT - 20){
+			if(zombie.y >= Zombie.HEIGHT - 20){
 				game.sBatch.draw(walkUp.getKeyFrame(stateTime, true), zombie.x, zombie.y);
 				zombie.y += 0 * Gdx.graphics.getDeltaTime();
 			} else {
@@ -125,7 +128,7 @@ public class ZombieGame extends ApplicationAdapter implements Screen {
 			}
 		}
 		else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-			if(zombie.y < 0){
+			if(zombie.y <= 0){
 				game.sBatch.draw(walkDown.getKeyFrame(stateTime, true), zombie.x, zombie.y);
 				zombie.y -= 0 * Gdx.graphics.getDeltaTime();
 			} else {
