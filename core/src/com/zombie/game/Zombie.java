@@ -6,17 +6,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Zombie extends Game {
 
-    public static final int WIDTH = 768, HEIGHT = 576;
+    public static final int WIDTH = 550, HEIGHT = 400;
 
-    public SpriteBatch batch;
-    public BitmapFont font;
+    public SpriteBatch sBatch;
+    public BitmapFont bMapFont;
 
     @Override
     public void create(){
 
-        batch = new SpriteBatch();
+        sBatch = new SpriteBatch();
 
-        font = new BitmapFont();
+        bMapFont = new BitmapFont();
         this.setScreen(new gameMenu(this));
 
     }

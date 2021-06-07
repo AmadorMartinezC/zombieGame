@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -28,18 +29,18 @@ public class gameMenu implements Screen {
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0, 0f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        game.batch.draw(new Texture(Gdx.files.internal("background.jpg")),0 ,0);
-
-        game.font.setColor(Color.BLACK);
-        game.font.draw(game.batch, "Zombie Attack", 50, 550);
-        game.batch.end();
+        game.sBatch.setProjectionMatrix(camera.combined);
+        game.sBatch.begin();
+        game.sBatch.draw(new Texture(Gdx.files.internal("background.jpg")),0 ,0);
+        game.bMapFont.setColor(Color.BLACK);
+        game.bMapFont.draw(game.sBatch, "MOVE THE ZOMBIE", Zombie.WIDTH / 2 - 60, Zombie.HEIGHT - 60);
+        game.sBatch.end();
 
         if ( (Gdx.input.isTouched())){
-            game.setScreen((Screen) new gameMenu(game));
+            game.setScreen(new ZombieGame(game));
             dispose();
         }
     }
